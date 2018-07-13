@@ -7,4 +7,11 @@
       include_role:
         name: ansible-role-cloud-securitygroup
       vars:
-        cloud_securitygroup_name: 'ansiblecloud-securitygroup'
+        cloud_securitygroup_name: ansiblecloud-securitygroup
+
+    - name: Delete Security Group
+      include_role:
+        name: ansible-role-cloud-securitygroup
+      vars:
+        cloud_securitygroup_name: ansiblecloud-securitygroup
+        cloud_securitygroup_state: absent

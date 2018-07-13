@@ -2,3 +2,4 @@
 - name: Create Security Group
   vr_firewall_group:
     name: '{{ cloud_securitygroup_name }}'
+    state: '{{ cloud_securitygroup_state|default("present") }}'
