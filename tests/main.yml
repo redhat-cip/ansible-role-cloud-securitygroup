@@ -1,9 +1,10 @@
 ---
 - hosts: localhost
+  vars:
+    ansible_cloud_provider: "{{ lookup('env', 'ANSIBLE_CLOUD_PROVIDER') }}"
   tasks:
     - name: Create Security Group
       include_role:
         name: ansible-role-cloud-securitygroup
       vars:
-        ansible_cloud_provider: "{{ lookup('env', 'ANSIBLE_CLOUD_PROVIDER') }}"
         cloud_securitygroup_name: 'ansiblecloud-securitygroup'
