@@ -1,5 +1,5 @@
 ---
-- name: Create Security Group
+- name: Manage Security Group
   os_security_group:
     name: '{{ cloud_securitygroup_name }}'
     state: '{{ cloud_securitygroup_state|default("present") }}'
