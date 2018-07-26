@@ -1,6 +1,7 @@
 ---
 - name: Manage Security Group
-  os_security_group:
+  ec2_group:
     name: '{{ cloud_securitygroup_name }}'
-    region_name: '{{ cloud_security_region|default(None) }}'
+    description: '{{ cloud_securitygroup_name }}'
+    region: '{{ cloud_securitygroup_region }}'
     state: '{{ cloud_securitygroup_state|default("present") }}'
