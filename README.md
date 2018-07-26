@@ -11,10 +11,11 @@ Please refer to [ansible-cloud](https://github.com/redhat-cip/ansible-cloud) [RE
 
 ## Role Variables
 
-| Variable name             | Required  | Default | Type   | Description                          |
-|---------------------------|-----------|---------|--------|--------------------------------------|
-| cloud_securitygroup_name  | True      | N/A     | String | Name of the security group           |
-| cloud_securitygroup_state | False     | present | String | Should the security group be present |
+| Variable name              | Required      | Default | Type   | Description                          |
+|----------------------------|---------------|---------|--------|--------------------------------------|
+| cloud_securitygroup_name   | True          | N/A     | String | Name of the security group           |
+| cloud_securitygroup_region | (Amazon only) | N/A     | String | Region where the security group is   |
+| cloud_securitygroup_state  | False         | present | String | Should the security group be present |
 
 
 ## Example
