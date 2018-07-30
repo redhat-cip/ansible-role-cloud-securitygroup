@@ -5,3 +5,4 @@
     description: '{{ cloud_securitygroup_name }}'
     region: '{{ cloud_securitygroup_region }}'
     state: '{{ cloud_securitygroup_state|default("present") }}'
+    rules: '{{ cloud_securitygroup_rules }}'

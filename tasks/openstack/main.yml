@@ -4,3 +4,14 @@
     name: '{{ cloud_securitygroup_name }}'
     region_name: '{{ cloud_security_region|default(None) }}'
     state: '{{ cloud_securitygroup_state|default("present") }}'
+
+- name: Manage Security group's firewall rule
+  os_security_group_rule:
+    security_group: '{{ cloud_securitygroup_name }}'
+    protocol: '{{ item.proto }}'
+    port_range_min: '{{ item.from_port }}'
+    port_range_max: '{{ item.to_port }}'
+    remote_ip_prefix: '{{ item.cidr_ip }}'
+    state: '{{ item.state|default("present") }}'
+  with_items: '{{ cloud_securitygroup_rules }}'
+  when: cloud_securitygroup_state|default("present") == 'present'

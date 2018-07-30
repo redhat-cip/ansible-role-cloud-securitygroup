@@ -2,3 +2,8 @@ ansible_host: localhost
 ansible_connection: local
 
 cloud_securitygroup_name: 'ansiblecloud-testsecuritygroup'
+cloud_securitygroup_rules:
+  - proto: tcp
+    from_port: 22
+    to_port: 23
+    cidr_ip: 0.0.0.0/0
