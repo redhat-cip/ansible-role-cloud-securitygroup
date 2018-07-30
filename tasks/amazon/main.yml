@@ -1,4 +1,18 @@
 ---
+- block:
+  - name: Retrieve vpc_subnet_id
+    ec2_vpc_net_facts:
+      region: '{{ cloud_securitygroup_region }}'
+      filters:
+        'tag:Name': '{{ cloud_securitygroup_network }}'
+    register: nets
+
+  - name: Set vpc_subnet_id if exists
+    set_fact:
+      vpc_net_id: '{{ nets.vpcs[0].id }}'
+
+  when: cloud_securitygroup_network is defined
+
 - name: Manage Security Group
   ec2_group:
     name: '{{ cloud_securitygroup_name }}'
@@ -6,3 +20,4 @@
     region: '{{ cloud_securitygroup_region }}'
     state: '{{ cloud_securitygroup_state|default("present") }}'
     rules: '{{ cloud_securitygroup_rules }}'
+    vpc_id: '{{ vpc_net_id|default(None) }}'
