@@ -7,10 +7,12 @@
 - name: Manage Security group's firewall rule
   vr_firewall_rule:
     group: '{{ cloud_securitygroup_name }}'
-    protocol: '{{ item.proto }}'
-    start_port: '{{ item.from_port }}'
-    end_port: '{{ item.to_port }}'
-    cidr: '{{ item.cidr_ip }}'
-    state: '{{ item.state|default("present") }}'
-  with_items: '{{ cloud_securitygroup_rules }}'
+    protocol: '{{ rule.proto }}'
+    start_port: '{{ rule.from_port }}'
+    end_port: '{{ rule.to_port }}'
+    cidr: '{{ rule.cidr_ip }}'
+    state: '{{ rule.state|default("present") }}'
+  loop: '{{ cloud_securitygroup_rules }}'
+  loop_control:
+    loop_var: rule
   when: cloud_securitygroup_state|default("present") == 'present'
